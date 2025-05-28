@@ -1,6 +1,6 @@
 package com.tasksapp.auth_service.services.ServiceImpl;
 
-import com.tasksapp.auth_service.DTOs.UserDTO;
+import com.tasksapp.auth_service.DTOs.AuthUserDTO;
 import com.tasksapp.auth_service.model.Client;
 import com.tasksapp.auth_service.repository.ClientRepository;
 import com.tasksapp.auth_service.services.ClientService;
@@ -17,8 +17,8 @@ public class ClientServiceImplementation implements ClientService {
     private ClientRepository clientRepository;
 
     @Override
-    public List<UserDTO> getAllClients() {
-        return clientRepository.findAll().stream().map(UserDTO::new).toList();
+    public List<AuthUserDTO> getAllClients() {
+        return clientRepository.findAll().stream().map(AuthUserDTO::new).toList();
     }
 
     @Override

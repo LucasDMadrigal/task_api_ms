@@ -9,5 +9,3 @@ spring.h2.console.enabled=true
 # Desactiva el login por defecto de Spring Security por ahora
 spring.security.user.name=
 spring.security.user.password=
-
-user.service.url=http://localhost:8081

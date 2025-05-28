@@ -1,22 +1,17 @@
 package com.tasksapp.auth_service.DTOs;
 
-import com.tasksapp.auth_service.model.Client;
-
 public class UserDTO {
-    private Long Id;
     private String firstName;
     private String lastName;
     private String email;
 
-    public UserDTO(Client user) {
-        this.Id = user.getId();
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
-        this.email = user.getEmail();
+    public UserDTO() {
     }
 
-    public Long getId() {
-        return Id;
+    public UserDTO(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
     }
 
     public String getFirstName() {
@@ -29,5 +24,17 @@ public class UserDTO {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
