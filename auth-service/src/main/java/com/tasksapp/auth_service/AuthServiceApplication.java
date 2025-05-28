@@ -20,7 +20,7 @@ public class AuthServiceApplication {
 			System.out.println("***********************************************");
 			System.out.println("***************	INICIANDO	*******************");
 			System.out.println("***************		LA		*******************");
-			System.out.println("***************	APPP!!!		*******************");
+			System.out.println("***************	auth-service!!!	***************");
 			System.out.println("***********************************************");
 		};
 	}

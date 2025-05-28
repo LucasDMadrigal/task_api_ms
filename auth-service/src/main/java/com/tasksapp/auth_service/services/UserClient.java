@@ -21,7 +21,7 @@ public class UserClient {
 
     public void createUser(UserDTO userDto) {
         webClient.post()
-                .uri("/api/users")
+                .uri("/api/users/create")
                 .bodyValue(userDto)
                 .retrieve()
                 .toBodilessEntity()
