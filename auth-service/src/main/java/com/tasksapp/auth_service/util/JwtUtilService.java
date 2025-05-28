@@ -45,4 +45,12 @@ public class JwtUtilService {
     }
 
 
+    public boolean validateToken(String jwt, UserDetails userDetails) {
+        if (isTokenExpired(jwt)) {
+            return false;
+        }
+
+        String username = extractUsername(jwt);
+        return username.equals(userDetails.getUsername());
+    }
 }
