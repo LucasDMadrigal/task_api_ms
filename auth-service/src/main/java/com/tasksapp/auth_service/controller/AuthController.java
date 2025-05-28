@@ -2,9 +2,11 @@ package com.tasksapp.auth_service.controller;
 
 import com.tasksapp.auth_service.DTOs.LoginUserDTO;
 import com.tasksapp.auth_service.DTOs.RegisterUserDTO;
+import com.tasksapp.auth_service.DTOs.UserDTO;
 import com.tasksapp.auth_service.model.Client;
 import com.tasksapp.auth_service.serviceSecurity.UserDetailServiceImpl;
 import com.tasksapp.auth_service.services.ClientService;
+import com.tasksapp.auth_service.services.UserClient;
 import com.tasksapp.auth_service.util.JwtUtilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,6 +38,8 @@ public class AuthController {
     @Autowired
     AuthenticationManager authenticationManager;
 
+    @Autowired
+    private UserClient userClient;
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody RegisterUserDTO registerUserDTO) {
@@ -56,6 +60,15 @@ public class AuthController {
         );
 
         clientService.saveClient(newUser);
+
+        UserDTO userDto = new UserDTO(
+                registerUserDTO.firstName(),
+                registerUserDTO.lastName(),
+                registerUserDTO.email()
+        );
+
+        userClient.createUser(userDto);
+
         return new ResponseEntity<>("Client created", HttpStatus.CREATED);
     }
 

@@ -1,3 +1,9 @@
-rootProject.name = 'taskapp'
-include 'auth-service', 'user-service', 'task-service'
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
 
+rootProject.name = 'taskapp'
+include 'auth-service', 'user-service'
