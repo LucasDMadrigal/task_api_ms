@@ -17,8 +17,8 @@ public class TaskServiceApplication {
 		return args -> {
 			System.out.println("***********************************************");
 			System.out.println("***************	INICIANDO	*******************");
-			System.out.println("***************		LA		*******************");
-			System.out.println("***************	auth-service!!!	***************");
+			System.out.println("***************		--		*******************");
+			System.out.println("*************** task-service!!!	***************");
 			System.out.println("***********************************************");
 		};
 	}

@@ -90,7 +90,7 @@ public class AuthController {
             final String jwt = jwtUtilService.generateToken(userDetails);
             return new ResponseEntity<>(jwt, HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace(); // agrega esto temporalmente
+            e.printStackTrace();
             return new ResponseEntity<>("login failed", HttpStatus.BAD_REQUEST);
         }
     }
