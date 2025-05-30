@@ -15,8 +15,6 @@ public class Task {
     private String description;
     private TASK_STATE status;
     private Date createdAt;
-
-    @Column(name = "user", nullable = false)
     private String email;
 
     public Task() {

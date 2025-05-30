@@ -3,7 +3,6 @@ package com.tasksapp.task_service.controllers;
 import com.tasksapp.task_service.DTOs.TaskDTO;
 import com.tasksapp.task_service.DTOs.requestDTOs.CreateTaskDTO;
 import com.tasksapp.task_service.DTOs.requestDTOs.UpdateTaskDTO;
-import com.tasksapp.task_service.models.Task;
 import com.tasksapp.task_service.serices.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

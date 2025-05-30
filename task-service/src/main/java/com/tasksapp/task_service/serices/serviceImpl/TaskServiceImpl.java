@@ -7,10 +7,12 @@ import com.tasksapp.task_service.models.Task;
 import com.tasksapp.task_service.repositories.TaskRepository;
 import com.tasksapp.task_service.serices.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class TaskServiceImpl implements TaskService {
 
     @Autowired
@@ -24,7 +26,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskDTO> getTasksByEmail(String email) {
-        return taskRepository.findByUserEmail(email).stream().map(TaskDTO::new).toList();
+        return taskRepository.findByEmail(email).stream().map(TaskDTO::new).toList();
     }
 
     @Override
