@@ -1,4 +1,4 @@
-package com.tasksapp.user_service.services;
+package com.tasksapp.user_service.serviceSecurity;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +19,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("No se encontró el usuario con email: " + email);
         }
 
-        return User.withUsername(user.getEmail())
+        return User.builder()
+                .username(user.getEmail())
                 .password(user.getPassword())
                 .roles("USER") // o cargar el rol real si lo tenés
                 .build();
+
     }
 }

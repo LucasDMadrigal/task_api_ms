@@ -37,7 +37,9 @@ public class UsersServiceImpl implements UsersService {
         Users newUser = new Users(
                 user.firstName(),
                 user.lastName(),
-                user.email()
+                user.email(),
+                user.password(),
+                "USER"
         );
         return usersRepository.save(newUser);
     }

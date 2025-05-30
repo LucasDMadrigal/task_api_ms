@@ -4,6 +4,7 @@ import com.tasksapp.user_service.DTOs.RequestDTOs.RegisterUserDTO;
 import com.tasksapp.user_service.DTOs.UsersDTO;
 import com.tasksapp.user_service.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,8 +31,16 @@ public class UsersController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<UsersDTO> createUser(@RequestBody RegisterUserDTO user) {
+    public ResponseEntity<?> createUser(@RequestBody RegisterUserDTO user) {
+
+        if(user.email() == null || user.password() == null || user.firstName() == null || user.lastName() == null) {
+            return new ResponseEntity<>("Missing fields", HttpStatus.BAD_REQUEST);
+        }
+
         UsersDTO newUser = new UsersDTO(usersService.saveUser(user));
+        if (newUser == null) {
+            return new ResponseEntity<>("User already exists", HttpStatus.BAD_REQUEST);
+        }
         return ResponseEntity.ok(newUser);
     }
 

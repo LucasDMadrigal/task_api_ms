@@ -1,4 +1,4 @@
-package com.tasksapp.auth_service.util;
+package com.tasksapp.user_service.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -44,10 +44,13 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody RegisterUserDTO registerUserDTO) {
 
+        // Validación básica
         if (clientService.getClientByEmail(registerUserDTO.email()) != null) {
             return new ResponseEntity<>("Client already exists", HttpStatus.BAD_REQUEST);
         }
-        if (registerUserDTO.firstName() == null || registerUserDTO.lastName() == null || registerUserDTO.email() == null || registerUserDTO.password() == null) {
+
+        if (registerUserDTO.firstName() == null || registerUserDTO.lastName() == null ||
+                registerUserDTO.email() == null || registerUserDTO.password() == null) {
             return new ResponseEntity<>("Missing fields", HttpStatus.BAD_REQUEST);
         }
 
@@ -67,9 +70,13 @@ public class AuthController {
                 registerUserDTO.email()
         );
 
-        userClient.createUser(userDto);
+        UserDTO savedUser = userClient.createUser(newUser);
 
-        return new ResponseEntity<>("Client created", HttpStatus.CREATED);
+        if (savedUser == null) {
+            return new ResponseEntity<>("Error al registrar en user-service", HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>("Client created in User Service", HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
@@ -83,6 +90,7 @@ public class AuthController {
             final String jwt = jwtUtilService.generateToken(userDetails);
             return new ResponseEntity<>(jwt, HttpStatus.OK);
         } catch (Exception e) {
+            e.printStackTrace(); // agrega esto temporalmente
             return new ResponseEntity<>("login failed", HttpStatus.BAD_REQUEST);
         }
     }

@@ -1,7 +1,7 @@
 package com.tasksapp.user_service.filters;
 
-import com.tasksapp.auth_service.serviceSecurity.UserDetailServiceImpl;
-import com.tasksapp.auth_service.util.JwtUtilService;
+import com.tasksapp.user_service.serviceSecurity.UserDetailsServiceImpl;
+import com.tasksapp.user_service.utils.JwtUtilService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,7 +23,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private JwtUtilService jwtUtilService;
 
     @Autowired
-    private UserDetailServiceImpl userDetailsServiceImp;
+    private UserDetailsServiceImpl userDetailsServiceImp;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -32,8 +32,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         String authHeader = request.getHeader("Authorization");
-        if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            filterChain.doFilter(request, response);
+        // ✅ Validamos que el header esté presente y tenga formato Bearer
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            filterChain.doFilter(request, response); // Dejamos pasar la request sin autenticar
             return;
         }
 

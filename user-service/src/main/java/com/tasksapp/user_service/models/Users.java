@@ -12,6 +12,7 @@ public class Users {
     private String firstName;
     private String lastName;
     private String password;
+    private String rol;
 
     @Column(unique = true)
     private String email;
@@ -19,11 +20,12 @@ public class Users {
     public Users() {
     }
 
-    public Users(String firstName, String lastName, String email, String password) {
+    public Users(String firstName, String lastName, String email, String password, String rol) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.rol = rol;
     }
 
     public Long getId() {
@@ -60,6 +62,14 @@ public class Users {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     public void setPassword(String password) {
