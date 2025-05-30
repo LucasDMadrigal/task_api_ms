@@ -6,4 +6,4 @@ pluginManagement {
 }
 
 rootProject.name = 'taskapp'
-include 'auth-service', 'user-service'
+include 'auth-service', 'user-service', 'task-service'
