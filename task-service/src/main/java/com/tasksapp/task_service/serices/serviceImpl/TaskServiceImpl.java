@@ -21,7 +21,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public TaskDTO createTask(CreateTaskDTO createTaskDTO, String email) {
         Task newTask = new Task(createTaskDTO.title(), createTaskDTO.description(), createTaskDTO.status(), new Date(), email);
-        return new TaskDTO(newTask);
+        return new TaskDTO(taskRepository.save(newTask));
     }
 
     @Override

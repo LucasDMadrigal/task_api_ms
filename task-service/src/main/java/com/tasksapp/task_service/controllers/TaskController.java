@@ -24,6 +24,12 @@ public class TaskController {
     public ResponseEntity<?> createTask(@RequestBody CreateTaskDTO createTaskDTO,
                                               @AuthenticationPrincipal UserDetails userDetails) {
 
+        if (userDetails == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        if (createTaskDTO.title() == null || createTaskDTO.description() == null || createTaskDTO.status() == null) {
+            return new ResponseEntity<>("Missing fields", HttpStatus.BAD_REQUEST);
+        }
         try {
         TaskDTO taskDTO = taskService.createTask(createTaskDTO, userDetails.getUsername());
         return new ResponseEntity<>(taskDTO, HttpStatus.CREATED); // ResponseEntity
@@ -43,7 +49,7 @@ public class TaskController {
         List<TaskDTO> tasks = taskService.getTasksByEmail(userDetails.getUsername());
         return new ResponseEntity<>(tasks, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("login failed", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("get tasks failed", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -52,6 +58,10 @@ public class TaskController {
 
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        if (updateTaskDTO.title() == null || updateTaskDTO.description() == null || updateTaskDTO.status() == null) {
+            return new ResponseEntity<>("Missing fields", HttpStatus.BAD_REQUEST);
         }
 
         try {
