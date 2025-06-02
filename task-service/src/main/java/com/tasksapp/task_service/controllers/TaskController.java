@@ -71,4 +71,14 @@ public class TaskController {
             return new ResponseEntity<>("update failed", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteTask(@PathVariable Long id) {
+        try {
+        taskService.deleteTask(id);
+        return new ResponseEntity<>("Task deleted", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("delete failed", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

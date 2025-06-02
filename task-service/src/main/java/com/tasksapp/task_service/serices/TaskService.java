@@ -11,4 +11,5 @@ public interface TaskService {
     TaskDTO createTask(CreateTaskDTO createTaskDTO, String email);
     List<TaskDTO> getTasksByEmail(String email);
     TaskDTO updateTask(Long id, UpdateTaskDTO updateTaskDTO);
+    void deleteTask(Long id);
 }

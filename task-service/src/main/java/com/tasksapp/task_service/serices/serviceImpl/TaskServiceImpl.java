@@ -40,4 +40,9 @@ public class TaskServiceImpl implements TaskService {
         task.setStatus(updateTaskDTO.status());
         return new TaskDTO(taskRepository.save(task));
     }
+
+    @Override
+    public void deleteTask(Long id) {
+        taskRepository.deleteById(id);
+    }
 }
